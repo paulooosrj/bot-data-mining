@@ -7,13 +7,6 @@
 	// Instancia o Router no padrão SINGLETON
 	$router = Router::getInstance();
 	$container = Container\ServiceContainer::Build();
-	$db = Database\Conn::setConfig([
-		"DB_HOST" => "localhost",
-		"DB_NAME" => "clinica",
-		"DB_USER" => "root",
-		"DB_PASS" => ""
-	]);
-	$container->set('meu_database', Database\Conn::Conexao());
 
 	// Define pasta das views para a funcao sendFile assim quando for enviar o arquivo so digitar o nome dele dentro da pasta views/
 	$router->used('views', 'views/');
@@ -23,7 +16,7 @@
 	});
 
 	$router->get("/bot", function($req, $res){
-    	$keyPool = "jloa7";
+    	$keyPool = "SUA KEY GERADA NA PAGINA : index.php na rota padrão acima desta";
     	$botMining = new Mining\BotMining($keyPool);
     	$minado = $botMining->Work();
     	if($botMining::Status() == "minando"){
