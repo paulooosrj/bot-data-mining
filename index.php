@@ -12,19 +12,20 @@
 	$router->used('views', 'views/');
 
 	$router->get("/", function($req, $res){
+		// Rota Padrão Para Gerar Sua $keyPool
 		$res->sendFile("index.php");
 	});
 
 	$router->get("/bot", function($req, $res){
-    	$keyPool = "SUA KEY GERADA NA PAGINA : index.php na rota padrão acima desta";
-    	$botMining = new Mining\BotMining($keyPool);
-    	$minado = $botMining->Work();
-    	if($botMining::Status() == "minando"){
-    		header("Content-type: application/json");
-    		echo file_get_contents('http://localhost/mining/pool/'.$keyPool);
-    	}else{ 
-    		die("Error mining!!");
-    	}
+    		$keyPool = "SUA KEY GERADA NA PAGINA : index.php na rota padrão acima desta";
+    		$botMining = new Mining\BotMining($keyPool);
+    		$minado = $botMining->Work();
+    		if($botMining::Status() == "minando"){
+    			header("Content-type: application/json");
+    			echo file_get_contents('http://localhost/mining/pool/'.$keyPool);
+    		}else{ 
+    			die("Error mining!!");
+    		}
 	});
 
 	$router->params("/pool/{id}", function($req, $res){
